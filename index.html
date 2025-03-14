@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dad Joke API</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+        }
+        #joke-container {
+            font-size: 20px;
+            margin-top: 20px;
+            font-weight: bold;
+        }
+        button {
+            margin-top: 20px;
+            padding: 10px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .info-section {
+            margin-top: 40px;
+            text-align: left;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    </style>
+</head>
+<body>
+    <h1>Random Dad Joke</h1>
+    <div id="joke-container">Click the button to get a joke!</div>
+    <button onclick="fetchJoke()">Get a New Joke</button>
+
+    <div class="info-section">
+        <h2>About the API</h2>
+        <p>The <strong>icanhazdadjoke</strong> API provides a collection of dad jokes that can be fetched programmatically. 
+        I selected this API because it is free, easy to use, and returns fun, lighthearted content that makes people laugh.</p>
+
+        <h2>API Source</h2>
+        <p>Website: <a href="https://icanhazdadjoke.com/" target="_blank">icanhazdadjoke.com</a></p>
+        <p>API Documentation: <a href="https://icanhazdadjoke.com/api" target="_blank">icanhazdadjoke API Docs</a></p>
+
+        <h2>API Request Parameters</h2>
+        <p>This API requires the following request settings:</p>
+        <ul>
+            <li><strong>Method:</strong> GET</li>
+            <li><strong>Header:</strong> Accept: application/json</li>
+        </ul>
+        <p>Providing the `Accept` header as `application/json` ensures that the response is returned in JSON format.</p>
+
+        <h2>Example Use Cases</h2>
+        <p>This API can be useful in various scenarios, such as:</p>
+        <ul>
+            <li>A chatbot that tells dad jokes.</li>
+            <li>A website that displays a random joke each day.</li>
+            <li>A fun addition to messaging apps or entertainment platforms.</li>
+        </ul>
+    </div>
+
+    <script>
+        function fetchJoke() {
+            fetch("https://icanhazdadjoke.com/", {
+                headers: { "Accept": "application/json" }
+            })
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById("joke-container").textContent = data.joke;
+            })
+            .catch(error => console.error("Error fetching joke:", error));
+        }
+    </script>
+</body>
+</html>
